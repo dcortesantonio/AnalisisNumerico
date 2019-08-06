@@ -36,9 +36,9 @@ Secante = function (f,x0,x1,tol,maxiter)
       Errorj[b]=Errores[b+1]  
     }
   }
-  plot(Errori,Errorj, type = "l", xlab = "Error i+1",ylab="Error i")
+  plot(Errori,Errorj, type = "l", xlab = "Error i",ylab="Error i+1")
   
 }
-f=function(x) (x-1.35)^3
+f=function(x) x^2-612
 plot(f,0,10)
-Secante(f,0,2,1e-8,1000)
+Secante(f,20,24,1e-8,1000)
