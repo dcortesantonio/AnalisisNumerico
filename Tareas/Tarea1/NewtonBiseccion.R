@@ -4,7 +4,6 @@ HibridNB = function(f, df, a, b, tol)
   c = (a+b) * 0.5
   Errores = c()
   Iteraciones = c()
-  
   if(a < c - (f(c)/df(c)))
   {
     if(c - (f(c)/df(c)) < b)
@@ -32,11 +31,13 @@ HibridNB = function(f, df, a, b, tol)
     }
     else
       xi = (a+b)*0.5
+    cat("xi: ",xi, "Corrección ",f(c)/df(c), "Iteración: ",i,"\n")
     i= i+1
     
   }
+  cat("Raíz: ", xi, "Iteraciones Necesarias: ", i-1)
   plot(Iteraciones,Errores, type = "l")
-  cat("RaÃ­z: ", xi, "Iteraciones Necesarias: ", i)
+  
 }
 
 f = function(x) exp(x)-pi*x
@@ -45,5 +46,4 @@ x0=0
 a=0
 b=0
 df = function(x) exp(x)-pi
-
 HibridNB(f,df,0,2,tol)
