@@ -29,7 +29,7 @@ Steffensen = function(f,x0,tol)
       Errorj[b]=Errores[b+1]  
     }
   }
-  plot(Errori,Errorj, type = "l", xlab = "Error i+1",ylab="Error i")
+  plot(Errori,Errorj, type = "l", xlab = "Error i",ylab="Error i+1")
 }
 
 
