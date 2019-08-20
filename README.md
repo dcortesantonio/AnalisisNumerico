@@ -26,11 +26,41 @@
 # Tabla de Contenidos
 - [Tareas](#tareas)
   - [Tarea 1](#tarea-1)
+  - [Tarea 2](#tarea-2)
+- [Talleres](#talleres)
+  -
 
 # Tareas
 
 [(Arriba)](#tabla-de-contenidos)
 En esta sección se encuentran todas las Tareas asignadas. Aparte de esto, se incluyen en un documento `R Notebook (NB)` todas las explicaciones de los algoritmos, con sus respectivas gráficas y explicación del algoritmo utilizado.
+
 ### Tarea 1
+1. Bisección
+2. Bisección Tres Intervalos
+3. Solución de Formula CUadrática
+4. Newton
+5. Newton y Bisección
+6. Solución Paramétricas
+7. Polares
+8. Problemas Solución Taller Inicial
+9. Punto Fijo
+10. Regula Falsi
+	* Regula Falsi - Illinois
+11. Secante
+12.Steffensen
+
+### Tarea 2
+1. Solución de Ecuaciones No Lineales
+	* Algoritmo de Broyden
+	* Notebook Ecuaciones No Lineales
+
+#Talleres
+
+[(Arriba)](#tabla-de-contenidos)
+En esta sección se encuentran los Talleres Asignados con su respectivos R Notebook
+
+### Taller 2 Ecuaciones No Lineales
+
 
 
