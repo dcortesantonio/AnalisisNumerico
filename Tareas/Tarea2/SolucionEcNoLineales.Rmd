@@ -1,0 +1,39 @@
+---
+title: "Solución de Ecuaciones No Lineales"
+output:
+  html_notebook: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+
+Algunas aplicaciones pueden requerir solucionar un problema más general $f(\overrightarrow{x})=\overrightarrow{0}$ para una función $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$. Hemos visto instancias en las que se han resuelto problemas de tipo $A\overrightarrow{x} = \overrightarrow{b}$, que es equivalente a ecnontrar las raices de $f(\overrightarrow{x})=A\overrightarrow{x}-\overrightarrow{b}$. Sin embargo, para el caso general es considerado más difícil. Las estrategias utilizadas anteriormente como bisección son difíciles de implementar y extenderlas ya que ahora debemos garantizar que diferentes valores sean ceros simultaneamente.
+
+Así mismo, es posible implementar el método de Newton para resolver este tipo de Sistemas de Ecuaciones No Lineales. No obstante, el método de Newton para resolver una ecuación con una sola incógnita requiere saber cuál es la derivada. El desarrollo de este método estuvo seguido por el análisis del método de la secante, que se utiliza cuando la derivada no existe o es demasiado complicada de evaluar.
+
+Ahora que ya se tiene una versión del método de Newton para los sistemas de ecuaciones no lineales $F(x) = 0$, Si $m$ y $n$ aumentan, el cálculo de las derivadas generaría una carga computacional enorme; además, para cada iteración, una matriz $Df(\overrightarrow{x})$ debe ser invertida y como cambia tantas veces, factorizar $Df(\overrightarrow{x_k})=L_kU_k$. Aun así, surge la misma pregunta: ¿qué pasa si la matriz jacobiana DF no está disponible? En respuesta, surge una estrategia cuasi-Newton expuesta por Broyden.
+
+<h3>Metodo de Broyden</h3>
+
+Suponga que $A_i$, es la mejor aproximación disponible en el paso $i$ hacia la matriz jacobiana y que se ha utilizado para crear:
+$$x_{i+1} = x_i - A_i^{-1}F(x_i)$$
+Para actualizar $A_i$, a $A_{i+1}$ para el siguiente paso, sería ideal respetar el carácter derivado de la jacobiana $DF$ y satisfacer:
+$$A_{i+1}δ_{i+1}=Δ_{i+1}$$
+
+donde $δ_{i+1} = x_{i+1}-x_i$ y $Δ_{i+1} = F(x_{i+1})-F(x_i)$.Por otro lado, para el complemento ortogonal de $δ_{i+1}$, no se tiene información nueva. Por lo tanto, se pide que:
+$$A_{i+1}w=A_iw$$
+para cada $w$;que satisface $δ_{i+1}^T = 0$. Se puede demostrar que una matriz que satisface tanto la ecuación $2$ como la ecuación $3$ es:
+$$A_{i+1}=A_i+ \frac{(Δ_{i+1}-A_iδ_i)δ_{i+1}^T}{δ_{i+1}^Tδ_{i+1}}$$
+El método Broyden utiliza el paso (ecuación $1$) del método de Newton para avanzar desde la estimación actual, mientras actualiza la jacobiana aproximada mediante ecuación $4$. En resumen, el algoritmo comienza con un valor inicial $x_0$ una jacobiana aproximada inicial $A_0$, para la cual puede elegirse la nutriz identidad si no hay otra opción mejor.
+
+<h4>Pseudocódigo</h4>
+1. Iniciar con una aproximación $x_0$, es decir, un vector inicial.
+2. Evaluar $J(x_0)$ y $f(x_0)$
+3. Calcular $J^{-1}(x_0)$
+4. Calcular $ x_{n+1}=x_n-J^{-1}(x_n)f(x_n)$
+5. Calcular $J_n=J_{n-1}+\frac{ΔF_n-J_{n-1}Δx_n}{||x_n||^2}Δx_n^T$
+6. Actualizar el Jacobiano y encontrar su inversa.
+7. Repetir desde 4 hasta que $f(x_n)=0$
+
+
